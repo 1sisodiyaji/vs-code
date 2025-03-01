@@ -1,0 +1,42 @@
+{
+  "name": "vs-code",
+  "type": "directory",
+  "children": [
+    {
+      "name": "src",
+      "type": "directory",
+      "children": [
+        {
+          "name": "components",
+          "type": "directory",
+          "children": [
+            {
+              "name": "FileExplorer.jsx",
+              "type": "file",
+              "content": "// Your FileExplorer component code here see the content herer",
+              "language": "javascript"
+            },
+            {
+              "name": "Editor.jsx",
+              "type": "file",
+              "content": "// Your Editor component code here",
+              "language": "javascript"
+            }
+          ]
+        },
+        {
+          "name": "App.jsx",
+          "type": "file",
+          "content": "// Your App component code here",
+          "language": "javascript"
+        }
+      ]
+    },
+    {
+      "name": "package.json",
+      "type": "file",
+      "content": "{\n  \"name\": \"vs-code-clone\",\n  \"version\": \"1.0.0\"\n}",
+      "language": "json"
+    }
+  ]
+}
