@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = import.meta.dirname;
 
 const sourceDir = process.argv[2] || './';
-const outputPath = join(__dirname, '../src/data/fileStructure.json');
+const outputPath = join(__dirname, '../data/fileStructure.json');
 
 // Maximum file size to load (5MB)
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
