@@ -1,8 +1,28 @@
 {
-  "name": "vs-code",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vs-code-web",
+  "description": "A beautiful, responsive web-based code viewer built with React that mimics VS Code's interface",
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
+  "author": "CraftFossLabs",
+  "license": "MIT",
+  "keywords": [
+    "vscode",
+    "code-viewer",
+    "react",
+    "syntax-highlighting",
+    "file-explorer",
+    "web-editor",
+    "code-sharing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1sisodiyaji/vs-code-web"
+  },
+  "bugs": {
+    "url": "https://github.com/1sisodiyaji/vs-code-web/issues"
+  },
+  "homepage": "https://github.com/1sisodiyaji/vs-code-web#readme",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
