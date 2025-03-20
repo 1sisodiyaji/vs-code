@@ -15,7 +15,7 @@ export const themes = {
   light: {
     bg: '#ffffff',
     sidebar: '#f3f3f3',
-    text: '#3D3D3D',
+    text: '#000000',
     accent: '#0098ff',
     folderIcon: '#dcb67a',
     hover: '#e8e8e8',

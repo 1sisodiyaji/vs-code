@@ -2,7 +2,7 @@ import React from 'react';
 import { mdiFolder, mdiFileDocument, mdiChevronRight, mdiChevronDown, mdiFolderOpen } from '@mdi/js';
 import Icon from '@mdi/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Palette } from 'lucide-react';
+import { Sun, Moon, Palette, Share2Icon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const FileExplorer = ({ data, onFileSelect }) => {
@@ -35,9 +35,9 @@ const FileExplorer = ({ data, onFileSelect }) => {
           transition={{ duration: 0.2 }}
           className="group"
         >
-          <div 
+          <div
             className="flex items-center h-6 hover:bg-[#2a2d2e] cursor-pointer text-[13px]"
-            style={{ 
+            style={{
               paddingLeft: `${depth * 8 + 4}px`,
               color: themeColors.text,
               backgroundColor: 'transparent',
@@ -54,9 +54,9 @@ const FileExplorer = ({ data, onFileSelect }) => {
 
     return (
       <div key={fullPath}>
-        <div 
+        <div
           className="flex items-center h-6 cursor-pointer text-[13px]"
-          style={{ 
+          style={{
             paddingLeft: `${depth * 8 + 4}px`,
             color: themeColors.text,
             backgroundColor: 'transparent',
@@ -68,15 +68,15 @@ const FileExplorer = ({ data, onFileSelect }) => {
             initial={false}
             animate={{ rotate: isExpanded ? 90 : 0 }}
           >
-            <Icon 
-              path={isExpanded ? mdiChevronDown : mdiChevronRight} 
+            <Icon
+              path={isExpanded ? mdiChevronDown : mdiChevronRight}
               size={0.6}
               style={{ color: themeColors.text }}
             />
           </motion.div>
-          <Icon 
-            path={isExpanded ? mdiFolderOpen : mdiFolder} 
-            size={0.6} 
+          <Icon
+            path={isExpanded ? mdiFolderOpen : mdiFolder}
+            size={0.6}
             style={{ color: themeColors.folderIcon }}
           />
           <span className="ml-1">{item.name}</span>
@@ -98,30 +98,33 @@ const FileExplorer = ({ data, onFileSelect }) => {
   };
 
   return (
-    <div 
+    <div
       className="md:w-2/12 h-full overflow-y-auto flex flex-col justify-between"
-      style={{ 
+      style={{
         backgroundColor: themeColors.sidebar,
         borderRight: `1px solid ${themeColors.border}`
       }}
     >
       <div className="">
-      <div className="p-2 flex justify-between items-center">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: themeColors.text }}>
-          Explorer
-        </span>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={toggleTheme}
-          className="p-1 rounded hover:bg-opacity-20"
-        >
-          {theme === 'dark' && <Moon size={16} style={{ color: themeColors.text }} />}
-          {theme === 'light' && <Sun size={16} style={{ color: themeColors.text }} />}
-          {theme === 'dracula' && <Palette size={16} style={{ color: themeColors.text }} />}
-        </motion.button>
-      </div>
-      {renderItem(data)}
+        <div className="p-2 flex justify-between items-center">
+          <span className="text-[11px] uppercase tracking-wide" style={{ color: themeColors.text }}>
+            Explorer
+          </span>
+          <div className="flex gap-2 items-center">
+            <Share2Icon size={16} style={{ color: themeColors.text }} className='cursor-pointer' />
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-1 rounded hover:bg-opacity-20"
+            >
+              {theme === 'dark' && <Moon size={16} style={{ color: themeColors.text }} />}
+              {theme === 'light' && <Sun size={16} style={{ color: themeColors.text }} />}
+              {theme === 'dracula' && <Palette size={16} style={{ color: themeColors.text }} />}
+            </motion.button>
+          </div>
+        </div>
+        {renderItem(data)}
       </div>
 
       <div className="flex justify-center items-center">

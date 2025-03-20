@@ -8,6 +8,9 @@ const __dirname = import.meta.dirname;
 const sourceDir = process.argv[2] || './';
 const outputPath = join(__dirname, '../src/data/fileStructure.json');
 
+// Maximum file size to load (5MB)
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
 function generateFileStructure(startPath) {
   if (!existsSync(startPath)) {
     console.error('Directory not found:', startPath);
@@ -25,29 +28,33 @@ function generateFileStructure(startPath) {
 
     if (stats.isFile()) {
       const ext = extname(name).toLowerCase();
-      const isAsset = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.pdf', 
-                      '.ttf', '.woff', '.woff2', '.eot', '.mp4', '.webm', '.mp3', '.wav'].includes(ext);
-      
+      const isAsset = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.pdf',
+        '.ttf', '.woff', '.woff2', '.eot', '.mp4', '.webm', '.mp3', '.wav'].includes(ext);
+
       if (isAsset) {
         console.log('Skipping asset file:', currentPath);
         return null;
       }
 
       try {
-        const content = readFileSync(currentPath, 'utf8');
-        if (content.length > 10000000) {
+        // Check file size before reading
+        if (stats.size > MAX_FILE_SIZE) {
           return {
             name,
             type: 'file',
-            content: '// File too large to display (> 10MB)',
-            language: ext.replace('.', '') || 'text'
+            content: `// File too large to display (> ${MAX_FILE_SIZE / (1024 * 1024)}MB)\n// Size: ${(stats.size / (1024 * 1024)).toFixed(2)}MB`,
+            language: ext.replace('.', '') || 'text',
+            size: stats.size
           };
         }
+
+        const content = readFileSync(currentPath, 'utf8');
         return {
           name,
           type: 'file',
           content,
-          language: ext.replace('.', '') || 'text'
+          language: ext.replace('.', '') || 'text',
+          size: stats.size
         };
       } catch (error) {
         console.error('Error reading file:', currentPath, error);
@@ -55,7 +62,8 @@ function generateFileStructure(startPath) {
           name,
           type: 'file',
           content: '// Error reading file content',
-          language: 'text'
+          language: 'text',
+          size: stats.size
         };
       }
     }
